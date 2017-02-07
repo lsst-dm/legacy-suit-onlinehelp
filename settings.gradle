@@ -1,0 +1,5 @@
+rootProject.name = 'suit-onlinehelp'
+
+include 'suit'
+
+project(":suit").projectDir     = file("html-doc/suit")

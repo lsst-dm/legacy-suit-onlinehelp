@@ -1,0 +1,156 @@
+ext.fireflyPath = "$rootDir.path/../firefly/"
+
+allprojects {
+  defaultTasks 'build'
+  apply from: "$fireflyPath/buildScript/init.gincl"
+}
+
+subprojects {
+
+  buildDir = "$rootDir/build"
+
+  apply plugin: "java"
+  apply from: "$fireflyPath/buildScript/gwt.gincl"
+
+  ext.gwt_lib = [ ':gwt-user',
+                  ':gwt-dev',
+                  ':validation-api-1.0.0.GA',
+                  ':validation-api-1.0.0.GA-sources']
+  repositories {
+    flatDir {
+      name 'ife_onlinehelp_repo'
+      dirs  "$rootDir/jars/gwt"
+    }
+  }
+
+  dependencies {
+    compile gwt_lib
+  }
+
+
+  sourceSets {
+    main.java.srcDir  "$rootDir/java/src/"
+    main.resources {
+      srcDir "$rootDir/java/src/"
+      exclude "**/*.gradle"
+    }
+  }
+
+  gwt {
+    modules = 'edu.caltech.ipac.onlinehelp.onlinehelp'
+    startupUrl = "index.html"
+    module_name = "onlinehelp"
+  }
+
+  task zipHelp(type: Zip) {
+    baseName = "${project.property("app-name")}_help"
+    destinationDir = file("$buildDir/libs")
+    from("$buildDir/gwt") {
+      include "${project.property("app-name")}/**/*"
+      exclude "**/WEB-INF"
+    }
+
+  }
+
+  task prepareHtmlDoc (dependsOn: loadConfig) {
+    ext.htmlSrc = project['app-name']
+
+    doLast {
+      copy {
+        from("$rootDir/html-doc/${ext.htmlSrc}") {
+          include '**/*'
+          exclude '*.gradle'
+        }
+        into gwt.warDir
+      }
+
+      copy {
+        from("$rootDir/html-doc/") {
+          include 'site.css'
+          include 'cse.xml'
+        }
+        from("$rootDir/html-doc/${ext.htmlSrc}") {
+          include '*.html'
+        }
+        into gwt.warDir
+
+        filter(org.apache.tools.ant.filters.ReplaceTokens, tokens: project.appConfigProps)
+      }
+
+    }
+  }
+
+  task generatePdf (type: Exec) {
+
+    def outDir = "$buildDir/gwt/${project.property("app-name")}"
+
+    executable "htmldoc"
+    workingDir = outDir
+
+    doFirst{
+
+      try {
+        "$executable --version".execute()
+      } catch (Exception e) {
+        println ">> HTMLDoc is not installed.  Skipping pdf generation."
+        throw new StopExecutionException(">> HTMLDoc is not installed.  Skipping pdf generation.")
+      }
+
+      def pdfFile = project.ext.pdfFile
+      if (pdfFile == null) {
+        throw ProjectConfigurationException("pdfFile property is not found.")
+      }
+      String inputs = new File("$projectDir/.pdf-input").text.trim()
+      args "--left", ".7in", "--right", ".7in", "--linkcolor", "blue", "--webpage", "-f", "$outDir/$pdfFile", "--titleimage"
+      args inputs.split()
+
+      logger.info ">> generatePdf: $commandLine"
+    }
+  }
+
+  //  build.dependsOn gwtCompile, generatePdf
+  build.dependsOn gwtCompile, prepareHtmlDoc, generatePdf, zipHelp
+  prepareHtmlDoc.mustRunAfter gwtCompile
+  prepareHtmlDoc.mustRunAfter loadConfig
+  generatePdf.mustRunAfter prepareHtmlDoc
+
+  task install(dependsOn: build) << {
+    def docRoot = appConfigProps.get("HTML_DOC_ROOT")
+    if (docRoot == null) {
+      docRoot = System.getenv('HTML_DOC_ROOT')
+    }
+    if (docRoot == null) {
+      throw ProjectConfigurationException("HTML_DOC_ROOT is not set.  install aborted.")
+    }
+    if (!file("$docRoot/").exists()) {
+      throw ProjectConfigurationException("$docRoot/ not found.  install aborted.")
+    }
+    def outputDir = file("$docRoot/onlinehelp")
+    mkdir(outputDir)
+    def zips = fileTree(dir:"${project.buildDir}/libs", include: '*.zip')
+    zips.each {File zipFile ->
+      copy {
+        from zipTree(zipFile)
+        into outputDir
+      }
+    }
+  }
+
+}
+
+
+task deployAll(dependsOn: loadConfig) << {
+
+  if (!project.hasProperty("apache_home")) {
+    throw ProjectConfigurationException("apache_home property is not found.")
+  }
+  def zips = fileTree(dir:"${rootDir}/build/libs", include: '*.zip')
+  zips.each {File zipFile ->
+    copy {
+      def outputDir = file("${apache_home}/onlinehelp")
+      from zipTree(zipFile)
+      into outputDir
+    }
+  }
+}
+

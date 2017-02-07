@@ -1,0 +1,168 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+
+<!-- FOOTER LEFT "Catalog Search Tool: Tables" -->
+<HEAD>
+<TITLE>Catalog Search Tool: Tables
+</TITLE>
+
+</HEAD>
+
+<BODY BGCOLOR="white" >
+<h3>Tables: Interacting with Tables</h3>
+
+Search results from the Catalog Search Tool (or the tool called Atlas)
+return results in an interactive table. This section describes
+features of this interactive table.<P>
+
+
+<em>Contents:</em><br>
++<a href="#header">Header: the top of the table</A><br>
++<A href="#columns">Columns</A><br>
++<A href="#filters">Filters</A> -- Filtering the table<br>
+<P>&nbsp;<P>
+
+
+<h3><A name="header">Header: the top of the table</A></h3>
+
+At the top of the table, there may be several symbols, for example:<br> <img
+src="img/tablehead.png"><br> which we now describe.<P>
+
+The first 100 rows of the search results are displayed in the table.
+In the example, there are 589 sources that were retrieved as part of
+the search.  The black arrows plus the page number allow you to
+navigate among these 'pages' of 100 sources each.  Note that the
+entire set of results (not just the 100 rows you are currently
+viewing) can be sorted alphabetically by clicking on any column's
+name. <P>
+
+Going from left to right along the top of the catalog tab, the next
+icon represents a filter: <img src="img/filter.png">  Filters are
+complex and powerful enough that they are covered in a <a
+href="#filters">separate section below</A>.<P>
+
+
+The next icon is <img src="img/texttable.png"> -- clicking on this
+changes the table display into a text display. The icon then changes
+to <img src="img/table.png"> -- click this again to return to the
+default table view.<P>
+
+The next icon is <img src="img/savetable.png"> which is "Save" -- this
+is how you may save the whole catalog to your own local disk. It will
+save it as an <a
+href="http://irsa.ipac.caltech.edu/applications/DDGEN/Doc/ipac_tbl.html"
+target="_blank">IPAC table file</A>, which is basically ASCII text
+with headers explaining the type of data in  each column, separated by
+vertical bars.  By default, the file is called "GatorQuery.tbl".
+<strong>Note that</strong> it will save your whole catalog if you save
+without filtering. If you filter, the header of the file will still
+say that all the rows are included, but only the filtered-down rows
+are saved.<P>
+
+
+The next to last option on the top of the catalog tab is this: <img
+src="img/tableoptions.png">.  Clicking on this icon brings up options
+for the table, e.g., how many rows are displayed per page, and which
+columns are shown. By default, all columns are shown. The default page
+size is 100 rows.  Note that expanding the page size to numbers much
+greater than 100 may result in a substantial performance degradation
+(e.g., your browser will appear to freeze or not appear to be doing
+anything while it manages and renders the large table).  <P>
+
+Finally, this is the last option on the top of the catalog tab: <img
+src="img/expand-24x24.png">. Clicking on this expands the catalog
+window pane to take up the entire browser window. To return to the
+prior view, click on "Close" in the upper left.<P>
+
+
+
+<h3><A name="columns">Columns</A></h3>
+
+Depending on what you did to display a table, the columns that are
+shown may be in easily-human-readable form, or may reflect column
+names used within the individual catalog. Please consult the detailed
+documentation associated with your specific archive if the headers are
+not clear to you.<P>
+
+There may be flexibility to display or hide columns, as described in the
+<a href="#header">headers section above</A>.<P>
+
+Clicking on the column names sorts the table by that column; clicking
+once sorts in ascending order, clicking a second time sorts in
+descending order, and clicking a third time returns the table to the
+original order.  Small arrows appear next to the column names to
+remind you if the column is sorted in ascending or descending order.
+
+
+
+<h3><A name="filters">Filters</A> -- Filtering the table</h3>
+
+
+Filters are a <em>very</em> powerful way of exploring the table full
+of search results.  Click on this icon <img src="img/filter.png"> in
+order to start the process of adding filters. A text entry box appears
+above each of the current catalog columns, with a small version of the
+filter icon corresponding to that row on the far left. You can type
+operators and values in these boxes -- hit return after typing or
+click in another box to implement the filter. For fields with a
+limited set of choices, instead of a text entry box, a filter icon
+will appear; click on it to select from the available choices. <P>
+
+<strong>Example 1:</strong> Atlas search results are a list of images
+meeting your search criteria. They may not all be science images --
+some may be errors or coverage maps. To just view the science images,
+filter down to just leave the science images. Click on the filter
+icon, and type "science" in the box above the corresponding columns.
+The table is filtered down to leave just the science images.<P>
+
+<strong>Example 2:</strong> From a catalog, show only those sources
+with declination above a certain value (say, 31 degrees), type "&gt;
+31" in the box above the "dec" column. Or, if you have retrieved a
+WISE catalog and would like to only view the objects with a W1 (3.4
+micron) profile-fitted magnitude less than 6 magnitudes, above the
+'w1mpro' column, type "&lt; 6" in the form.  <P>
+
+After you impose a filter, then the number of rows in the catalog is
+restricted according to the rules you have specified, and the
+"filters" icon on the top right of the catalog pane has changed to
+remind you that there has been a filter applied, in this case just one
+filter: <img src="img/filtersapplied.png">. To clear the filters, click on
+the cancel filters icon (which also appears after you impose filters):
+<img src="img/cancelfilters.png">.<P>
+
+Note that the filters are logically "AND"ed together -- it will impose
+this AND that AND this other restriction. You can relatively easily
+restrict things such that no data are left; if that is the case, you
+will get "There are no data to display." You can then cancel all the
+filters at once via the cancel filters icon (<img
+src="img/cancelfilters.png">), or remove them individually by hand by
+editing the filter boxes at the top of each column, just as you did to
+impose the filters. <P>
+
+The available logical operators are :
+<UL>
+<LI> =  which means 'equal to' (exactly!), e.g., the parameter on
+which I am querying (the column headers as shown) is exactly equal to
+this value I am specifying.
+<LI> &gt; which means 'greater than'
+<LI> &lt; which mean 'less than'
+<LI> != which means 'not equal to' (exactly!)
+<LI> &gt;= which means 'greater than or equal to'
+<LI> &lt;= which means 'less than or equal to'
+<LI> IN which means 'included within this list', e.g., the
+parameter  on which you are querying (such as "Bandpass") is included
+within the list you are specifying (if the column filter is free-form
+text, type "value1,value2" and it will give you rows that have value1
+or value2).
+<LI> LIKE which means 'resembles the text that is entered', e.g., the text
+resembles the text that you type in the box.
+</UL>
+
+
+
+
+
+</BODY>
+</HTML>

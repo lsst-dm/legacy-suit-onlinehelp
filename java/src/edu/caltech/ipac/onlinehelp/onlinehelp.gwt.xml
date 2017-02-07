@@ -1,0 +1,19 @@
+<module rename-to="onlinehelp">
+    <!-- Inherit the core Web Toolkit stuff.                  -->
+    <inherits name='com.google.gwt.user.User'/>
+    <!--<inherits name="com.google.gwt.http.HTTP"/>-->
+    <!--<inherits name="com.google.gwt.xml.XML"/>-->
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+
+    <!-- Specify the app entry point class.                   -->
+    <entry-point class='edu.caltech.ipac.onlinehelp.core.OnlineHelp'/>
+
+    <source path="core"/>
+    <source path="commands"/>
+    <source path="data"/>
+
+
+    <!-- The following line should be removed when gwt fixes showing their code.  -->
+    <set-property name="gwt.suppressNonStaticFinalFieldWarnings" value="true" />
+
+</module>

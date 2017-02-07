@@ -1,0 +1,199 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--NewPage-->
+<HTML>
+
+<!-- FOOTER LEFT "Catalog Search Tool: : X-Y Plots" -->
+<HEAD>
+<TITLE>Catalog Search Tool: : X-Y Plots
+</TITLE>
+
+</HEAD>
+
+<BODY BGCOLOR="white" >
+<h3>X-Y Plots</h3>
+
+Certain implementations of the Abbreviated IRSA Viewer either display
+results in an x-y plot format, or allow users to make such a plot.
+These plots are interactive. This section describes features of this
+x-y plotting service.<P>
+
+
+<em>Contents:</em><br>
++<a href="#xyplots">Interacting with X-Y plots</A><br>
++<a href="#catalogs">Plotting catalogs</A><br>
++<a href="#examples">Example of plotting a catalog</A><P>
+<P>&nbsp;<P>
+
+<h3><a name="xyplots">Interacting with X-Y plots</A></h3>
+
+Depending on how the xy plot is created, it most likely comes up with
+RA and Dec displayed first. Note  RA increases to
+the left. <P>
+
+One of the most powerful aspects of the x-y plots is its
+interactivity. If you click on a source in the plot, it is highlighted
+in other portions of the display - perhaps overplotted on an image or
+highlighted in a catalog.<P>
+
+You can click and drag to zoom in the plot. This is called "rubber
+band zoom." You can also use this feature to filter the catalog that
+is plotted -- this is another aspect of the <a
+href="tablesCST.html#filters">table filtering</A> covered in another
+section.<P>
+
+You can change what is plotted by clicking on the gears icon: <img
+src="img/xyplotoptions.png">. See <a href="#catalogs">plotting
+catalogs</A> below.<P>
+
+
+
+
+<h3><a name="catalogs">Plotting catalogs</A></h3>
+
+The plotting tool, by default, starts with RA and Dec plotted.  For
+large catalogs, the plot is binned -- more points are encompassed in a
+black tile and fewer points are encompassed in a white tile. For small
+catalogs, each individual point is shown as a blue dot.<P>
+
+In either case, letting your mouse hover over a point tells you the
+values of the point under your cursor, and (if binned) how many points
+are represented:<br> <img src="img/morethanonepoint.png"><P>
+
+
+To change what is plotted, click on the gears icon in the upper right
+of the plot window pane: <img src="img/xyplotoptions.png">.
+Configuration options then appear in a pop-up. You can choose a single
+column to plot against another column -- either start typing a column
+name into the X and Y boxes, and it will help provide you viable
+options from the column headings, or click on the "Cols" link to bring
+up a pop-up with all the columns listed. NOTE THAT you must type in
+the column name <em>exactly matching</em> the column headings as
+displayed. By default, it echoes the x and y labels and units from the
+original table, but you can change this by clicking on the triangles
+below each entry box (e.g., make the label "SNR in WISE-1" rather than
+the more cryptic column header "w1snr"). <P>
+
+You can also do simple mathematical manipulations. For example, you
+can plot w1mpro vs. w1mpro-w4mpro. Note that you can reverse the axes
+such that the brighter objects are at the top of the plot.<br>
+
+<img src="img/plotscreenshot.png" width="100%"><P>
+
+You can add or remove the gridlines via the "Grid" checkbox.  <P>
+
+
+You can also <strong>restrict what data are plotted</strong> in any of
+several different ways. You can set limits based on the "more options"
+in the plot options pop-up, or you can use a rubber band zoom, as
+follows.  Click and drag in a sub-region of the plot. The icons in the
+upper left of the plot change corresponding to what you can do, in
+this case to these: <img src="img/plotoptions.png">. They are, from
+left to right: zoom in on the region you have selected, select the
+objects in the catalog, and filter the catalog to leave only those
+objects. If you click on the zoom icon, then the plot axes change to
+encompass just the sources you have selected. If you click on the
+select icon, then the plot symbols corresponding to your selection
+change shape and color, the rows (corresponding to those sources) in
+the catalog are highlighted in the catalog window pane, and the
+corresponding objects overplotted on the image in the image window
+pane change color. If you click on the filter icon, then the catalog
+view is filtered down, restricted to just those sources you have
+selected, and the filter notes in the upper left of the plot window
+(and the upper right of the catalog window) change to remind you that
+you have a filter applied. Only those sources that pass the filter are
+shown overlaid on the image(s). (This is the behavior of 'filter', as
+opposed to 'select'; the former restricts what is shown, the latter
+just highlights the objects.) For more on filters, see <a
+href="tablesCST.html#filters">the filter section</A>.<P>
+
+If you move your mouse over any of the points, you will get a pop-up
+telling you the values corresponding to the point under your cursor.
+If you click on any of the points, the object(s) corresponding to that
+point will be highlighted in the overlays in the images shown, and
+highlighted in the catalog table.  This works the other way too -
+click on a row in the catalog, or an object in the images, and the
+object will be highlighted in the plot or the catalog or the image.<P>
+
+
+<strong>Want to save a plot to file?</strong> At this time, the best
+way to do that is a screen snapshot. On a Mac, this is accomplished
+via holding down command, then shift, then 4, then let go and your
+mouse cursor changes. Hit the space bar to select the window over
+which your mouse is hovering. Your mouse cursor changes again, and hit
+the mouse button. A snapshot is then saved to your Desktop, tagged
+with the date and time. <P>
+
+
+<h3><a name="examples">Example of plotting catalogs</A></h3>
+
+<strong>Example: Plotting [W1] vs. [W1]-[W4] in a star-forming
+region</strong><P>
+
+In a star-forming region defined for this example, we expect that the
+sources will be dominated by young stars. Stars without circumstellar
+dust should be at a variety of W1 brightnesses, but all have
+[W1]-[W4]~0.  Background galaxies should be faint and red. Stars with
+circumstellar dust (e.g., young stars) should be bright and red. Here,
+we will make a plot, identify a bright and red object in the plot,
+and find where it is in the WISE images.
+
+<OL>
+<LI>In the Catalog Search Tool, start a catalog search. Select
+Project=WISE. Select the AllWISE database, and the AllWISE Source
+Catalog. Enter a target of IC1396. 
+Pick the cone search method and select 0.5 degrees radius.
+<LI>It may take a few seconds to load and display the catalog. Note
+that all ~17,500 sources are overplotted on the images on the left and
+in the plot to the right. The first 100 of the ~17,500 sources are
+shown in the bottom table, but you can page through all ~17,500.  
+Note that selecting a
+source in the image makes its corresponding row in the catalog turn
+green and point in the plot turn yellow; this is all interchangable
+such that picking a source in one place highlights it in the other
+places. 
+<LI>The plot comes up with an RA/Dec plot by default. Each point represents
+more than one row of the catalog. Mouse over or click on a point to
+see how many rows are represented: <img
+src="img/morethanonepoint.png">
+<LI>Click on the expand (<img src="img/expand-24x24.png">) icon in the
+upper right of the plot window to make it big. 
+<LI>Click on the gear <img src="img/xyplotoptions.png"> icon in the
+upper left of the plot window to change what is plotted.
+<LI>Enter in the x box: w1mpro-w4mpro. This is WISE-1 profile-fitted
+measurement in magnitudes minus WISE-4 profile-fitted
+measurement in magnitudes,or [W1]-[W4]. 
+<LI>Click on the triangle next to "X label/unit/options", and enter
+"[W1]-[W4]" for the label. Enter "mag" for the unit. Check "grid" to
+make the grid appear.
+<LI>Enter in the y box: w1mpro  
+<LI>Click on the triangle next to "Y label/unit", and enter [W1] for
+the label. Enter "mag" for the unit. Click on "reverse" to make the
+brighter objects appear at the top of the plot. Click the "grid" box.
+<LI>Click "Apply."
+<LI>Obtain this plot:<br>
+<img src="img/ex1-plot.png" width="100%"><br>
+<LI>Note that the points are shades of grey, denoting that
+at least one of the points in the plot is representative of more than
+one row in the catalog. The legend for how many points correspond to
+each shade of grey is given in the upper right.
+<LI>Click and drag from corner given approximately by (2,6) to (7,11). 
+<LI>The icons in the upper left change after you do this, and we want
+to zoom on this region. Click on the magnifying glass with a "+"
+inside.
+<LI>After we zoom, there are few enough points that individual points
+are shown as blue circles. Where they overlap, the blue appears darker.  
+<LI>Find the brightest source near [W1]-[W4]~4.5. Click on that point. 
+<LI>Click on "Close" in the upper left to return to the window pane
+view.
+<LI>The (astrophysically) bright and red object we selected in the
+plot is highlighted in the overlays on top of the image and in the
+catalog (though you may need to scroll in the catalog to find the
+green highlighted line). To find it even more easily, you can click
+and drag around this point in the plot. Click on the filter icon in
+the upper left. The plot at this point looks silly, but only that
+point is left in the overlay of sources on the images and in the
+catalog list. (If you have been following closely, it should be
+J213808.44+572647.6.)  
+</OL>
+

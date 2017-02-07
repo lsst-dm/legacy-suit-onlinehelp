@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<GoogleCustomizations>
+<CustomSearchEngine>
+    <Title>Hydra Online Help</Title>
+    <Description>
+        A Google Custom Search Engine for Hydra's online help
+    </Description>
+    <Context>
+        <BackgroundLabels>
+            <Label name="_cse_include" mode="FILTER"/>
+        </BackgroundLabels>
+    </Context>
+    <LookAndFeel nonprofit="false">
+        <Colors url="#009933" background="#FFFFFF" border="#FFFFFF" title="#1155CC" text="#333333" visited="#1155CC" title_hover="#1155CC" title_active="#1155CC" />
+    </LookAndFeel>
+</CustomSearchEngine>
+<Annotations>
+    <Annotation about="http://irsa.ipac.caltech.edu/onlinehelp/@app-name@/*">
+        <Label name="_cse_include"/>
+    </Annotation>
+</Annotations>
+
+</GoogleCustomizations>

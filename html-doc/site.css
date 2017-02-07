@@ -1,0 +1,26 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    height: 100%;
+	background-color: #e3e3e3 !important;
+    }
+
+#page {
+  display:  table;
+  height:100%;
+  width: 100%;
+}
+
+#irsa-banner {
+  display:  table-row;
+  width: 100%;
+}
+
+#toc {
+  display:  table-row;
+  height:100%;
+  width: 100%;
+}
+
