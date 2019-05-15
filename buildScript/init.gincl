@@ -9,8 +9,6 @@ buildDir = "$buildRoot/${project.ext["app-name"]}"
 
 
 task loadConfig {
-  description= 'Load build and app config files.  Also, setup common properties like build_date, build_time, etc.'
-  group = MISC_GROUP
 
   project.ext.build_time = new Date().toString()
   project.ext.build_date = new Date().format("yyyy-MM-dd")

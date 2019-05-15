@@ -16,7 +16,7 @@
     </LookAndFeel>
 </CustomSearchEngine>
 <Annotations>
-    <Annotation about="http://irsa.ipac.caltech.edu/onlinehelp/@app-name@/*">
+    <Annotation about="https://irsa.ipac.caltech.edu/onlinehelp/%app-name%/*">
         <Label name="_cse_include"/>
     </Annotation>
 </Annotations>

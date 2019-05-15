@@ -58,15 +58,15 @@ public class HelpManager {
             tree = createTree(root);
             helpWindow = new NamedFrame(HELP_WINDOW);
 
-            HTML gbar = getSearchBar();
+//            HTML gbar = getSearchBar();
             HTML title = new HTML("<b>" + Window.getTitle() + "</b>");
             toolbar = new HorizontalPanel();
             toolbar.add(title);
-            toolbar.add(gbar);
+//            toolbar.add(gbar);
             toolbar.setWidth("100%");
             Util.setStyle(toolbar, "paddingTop", "5px");
-            toolbar.setCellWidth(gbar, "400px");
-            toolbar.setCellHorizontalAlignment(gbar, HorizontalPanel.ALIGN_RIGHT);
+//            toolbar.setCellWidth(gbar, "400px");
+//            toolbar.setCellHorizontalAlignment(gbar, HorizontalPanel.ALIGN_RIGHT);
             toolbar.setCellHorizontalAlignment(title, HorizontalPanel.ALIGN_CENTER);
 
             // add view pdf is exists
@@ -108,13 +108,13 @@ public class HelpManager {
     }
 
     private HTML getSearchBar() {
-        HTML html = new HTML("<form id='cref' action='http://www.google.com/cse' target='" + HELP_WINDOW + "'>"
+        HTML html = new HTML("<form id='cref' action='https://cse.google.com/cse' target='" + HELP_WINDOW + "'>"
                 + "<input type='hidden' name='cref' value='" + IRSA_ONLINE_HELP + Util.getMetaInfo("app-name") + "/cse.xml' />"
 //                + "<input type='hidden' name='url' value='" + GWT.getModuleBaseURL() + "' />"
                 + "<input name='q' type='text' size='40' />"
                 + "<input type='submit' name='sa' value='Search' />"
                 + "</form>"
-                + "<script type='text/javascript' src='http://www.google.com/cse/brand?form=cref'></script>"
+                + "<script type='text/javascript' src='https://www.google.com/cse/brand?form=cref'></script>"
                 );
 
         return html;

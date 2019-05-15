@@ -35,7 +35,7 @@ task devMode (dependsOn: loadConfig) {
 // this is used by onlinehelp.  don't remove until online help is migrated away from gwt.
 task gwtCompile (type: JavaExec, dependsOn: [gwt, loadConfig]) {
   description= 'GWT Compile'
-  group = "Build"
+  group = MAIN_GROUP
 
   outputs.upToDateWhen { false }
   inputs.file sourceSets.main.java.srcDirs
